@@ -21,4 +21,6 @@ public interface CampaignService {
     DataResult<UpdateCampaignRequest> update(int id,UpdateCampaignRequest updateCampaignRequest) throws BusinessException;
 
     Result delete(int id) throws BusinessException;
+
+    Campaign getCampaignById(int campaignId) throws BusinessException;
 }

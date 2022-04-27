@@ -4,6 +4,7 @@ import com.gameManagement.demo.business.dtos.PlayerDto;
 import com.gameManagement.demo.business.dtos.PlayerListDto;
 import com.gameManagement.demo.business.requests.CreatePlayerRequest;
 import com.gameManagement.demo.business.requests.UpdatePlayerRequest;
+import com.gameManagement.demo.core.businessException.BusinessException;
 import com.gameManagement.demo.core.results.DataResult;
 import com.gameManagement.demo.core.results.Result;
 import com.gameManagement.demo.entities.concretes.Campaign;
@@ -16,10 +17,10 @@ public interface PlayerService {
 
     DataResult<List<PlayerListDto>> getAll();
 
-    DataResult<CreatePlayerRequest> add(CreatePlayerRequest createPlayerRequest);
+    DataResult<CreatePlayerRequest> add(CreatePlayerRequest createPlayerRequest) throws Exception;
 
-    DataResult<UpdatePlayerRequest> update(int id, UpdatePlayerRequest updatePlayerRequest);
+    DataResult<UpdatePlayerRequest> update(int id, UpdatePlayerRequest updatePlayerRequest) throws Exception;
 
-    Result delete(int id);
+    Result delete(int id) throws BusinessException;
 }
 

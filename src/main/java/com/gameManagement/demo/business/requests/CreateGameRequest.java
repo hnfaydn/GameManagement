@@ -1,11 +1,11 @@
 package com.gameManagement.demo.business.requests;
 
-import com.gameManagement.demo.entities.concretes.Campaign;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Data
@@ -17,8 +17,10 @@ public class CreateGameRequest {
 
     private String gameProviderCompany;
 
+    @Min(0)
     private double gamePrice;
 
+    @Nullable
     private List<Integer> campaignIds;
 
 }

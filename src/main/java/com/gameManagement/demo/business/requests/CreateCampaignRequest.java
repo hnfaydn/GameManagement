@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 
@@ -18,5 +19,6 @@ public class CreateCampaignRequest {
 
     private LocalDate campaignEndDate;
 
+    @Min(0)
     private double discountAmount;
 }

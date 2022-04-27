@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GameDao extends JpaRepository<Game,Integer> {
+
+    boolean existsGameByGameName(String gameName);
+
+    boolean existsGameByGameId(int gameId);
 }

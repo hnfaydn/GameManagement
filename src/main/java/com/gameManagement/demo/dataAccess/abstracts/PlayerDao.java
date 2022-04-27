@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlayerDao extends JpaRepository<Player, Integer> {
+
+    boolean existsPlayerByNationalityId(long nationalityId);
+
+    boolean existsPlayerByPlayerId(int playerId);
 }

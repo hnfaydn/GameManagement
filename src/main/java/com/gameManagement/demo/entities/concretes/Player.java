@@ -33,7 +33,7 @@ public class Player {
     private LocalDate dateOfBirth;
 
     @Column(name = "national_id")
-    private Long nationalityId;
+    private long nationalityId;
 
     @OneToMany
     private List<Game> games;

@@ -48,7 +48,6 @@ public class CampaignManager implements CampaignService {
 
         Campaign campaign = this.modelMapperService.forRequest().map(createCampaignRequest,Campaign.class);
 
-        campaign.setCampaignId(0);
         this.campaignDao.save(campaign);
 
         return new SuccessDataResult(createCampaignRequest,"Data Added");
@@ -64,10 +63,7 @@ public class CampaignManager implements CampaignService {
 
         Campaign campaign = this.campaignDao.getById(id);
 
-        campaign.setCampaignName(updateCampaignRequest.getCampaignName());
-        campaign.setCampaignStartDate(updateCampaignRequest.getCampaignStartDate());
-        campaign.setCampaignEndDate(updateCampaignRequest.getCampaignEndDate());
-        campaign.setDiscountAmount(updateCampaignRequest.getDiscountAmount());
+        campaignUpdateOperations(campaign,updateCampaignRequest);
 
         this.campaignDao.save(campaign);
 
@@ -82,6 +78,14 @@ public class CampaignManager implements CampaignService {
         this.campaignDao.deleteById(id);
 
         return new SuccessResult("Date Deleted");
+    }
+
+    @Override
+    public Campaign getCampaignById(int campaignId) throws BusinessException {
+
+        checkIfCampaignIdExists(campaignId);
+
+        return this.campaignDao.getById(campaignId);
     }
 
     private void checkIfCampaignIdExists(int id) throws BusinessException {
@@ -108,5 +112,13 @@ public class CampaignManager implements CampaignService {
         if(this.campaignDao.existsCampaignByCampaignName(campaignName)){
             throw new BusinessException("This campaign is already exists:"+ campaignName );
         }
+    }
+
+    private void campaignUpdateOperations(Campaign campaign, UpdateCampaignRequest updateCampaignRequest) {
+
+        campaign.setCampaignName(updateCampaignRequest.getCampaignName());
+        campaign.setCampaignStartDate(updateCampaignRequest.getCampaignStartDate());
+        campaign.setCampaignEndDate(updateCampaignRequest.getCampaignEndDate());
+        campaign.setDiscountAmount(updateCampaignRequest.getDiscountAmount());
     }
 }
